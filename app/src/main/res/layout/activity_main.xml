@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/main_RLT_all"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/main_LPB_leftbar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="100dp"
+            android:layout_height="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="130dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:min="0"
+            android:progressDrawable="@drawable/custom_progress"
+            android:progressTint="#63FF00" />
+
+        <ImageView
+            android:id="@+id/main_IMG_left"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/main_LPB_leftbar"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/img_liel" />
+
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="150dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_BTN_1L"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Request"
+                android:textColor="@color/btnTextColor" />
+
+            <Button
+                android:id="@+id/main_BTN_2L"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/main_BTN_1L"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Cry"
+                android:textColor="@color/btnTextColor" />
+
+            <Button
+                android:id="@+id/main_BTN_3L"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Scream"
+                android:textColor="@color/btnTextColor" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="450dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/main_BTN_1R"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Nipple"
+                android:textColor="@color/btnTextColor" />
+
+            <Button
+                android:id="@+id/main_BTN_2R"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/main_BTN_1R"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Baby bottle"
+                android:textColor="@color/btnTextColor" />
+
+            <Button
+                android:id="@+id/main_BTN_3R"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="10"
+                android:background="@color/btnFontColor"
+                android:text="Sing Song"
+                android:textColor="@color/btnTextColor" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/main_LPB_rightbar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="100dp"
+            android:layout_height="5dp"
+            android:layout_marginLeft="625dp"
+            android:layout_marginTop="130dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:min="0"
+            android:progressDrawable="@drawable/custom_progress"
+            android:progressTint="#63FF00" />
+
+        <ImageView
+            android:id="@+id/main_IMG_right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/main_LPB_rightbar"
+            android:layout_marginLeft="625dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/img_nathan" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
