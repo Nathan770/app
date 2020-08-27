@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar main_LPB_rightbar;
     private ImageView main_IMG_right;
     private ImageView main_IMG_left;
-    
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +97,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void checkContinue() {
 
-        if (main_LPB_leftbar.getProgress() <= 30) {
-            main_LPB_leftbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        }
-
-        if (main_LPB_rightbar.getProgress() <= 30) {
-            main_LPB_rightbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        }
+        changeColor();
 
         if (main_LPB_leftbar.getProgress() == 0) {
             Toast.makeText(this, "Liel sleep", Toast.LENGTH_LONG).show();
@@ -114,6 +108,19 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Nathan sleep", Toast.LENGTH_LONG).show();
             stopApp();
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void changeColor() {
+
+        if (main_LPB_leftbar.getProgress() <= 30) {
+            main_LPB_leftbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+        if (main_LPB_rightbar.getProgress() <= 30) {
+            main_LPB_rightbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
     }
 
     private void changePlayerRight() {
