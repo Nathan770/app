@@ -11,7 +11,11 @@
         android:id="@+id/main_RLT_all"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-
+        <ImageView
+            android:id="@+id/main_IMG_backround"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/img_backround_start" />
         <ProgressBar
             android:id="@+id/main_LPB_leftbar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"

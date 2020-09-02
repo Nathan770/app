@@ -1,31 +1,25 @@
 package com.example.app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +28,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class Random_game extends AppCompatActivity {
     public static final String TAG = "nathan";
     private Button main_BTN_1L;
     private Button main_BTN_2L;
@@ -47,118 +41,115 @@ public class MainActivity extends AppCompatActivity {
     private ImageView main_IMG_right;
     private ImageView main_IMG_left;
     private ImageView main_IMG_backround;
-    private int counter = 0;
+    public ArrayList<ItemData> itemDataList;
     private SharedPreferences.Editor mySP;
-    private Double x;
-    private Double y;
+    private int counter =0;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location mLastKnownLocation;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-
         findViews();
-        buttonAction();
+        games();
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void buttonAction() {
-
-        View.OnClickListener buttomClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttomClick(view);
+    private void games() {
+        int randNumPlayer = 0;
+        boolean turn = true ,nextHand = true ;
+        while (nextHand){
+            randNumPlayer = new Random().nextInt(3);
+            if (turn) {
+                player1();
+                turn = false;
+            }else {
+                player2();
+                turn = true;
             }
-        };
-
-        main_BTN_1L.setOnClickListener(buttomClickListener);
-        main_BTN_2L.setOnClickListener(buttomClickListener);
-        main_BTN_3L.setOnClickListener(buttomClickListener);
-
-        main_BTN_1R.setOnClickListener(buttomClickListener);
-        main_BTN_2R.setOnClickListener(buttomClickListener);
-        main_BTN_3R.setOnClickListener(buttomClickListener);
+            counter++;
+            checkContinue();
+            nextHand = nextHandCheck();
+        }
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void buttomClick(View view) {
-
-        if (main_BTN_1R.getId() == view.getId()) {
-            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 10);
-
-        } else if (main_BTN_2R.getId() == view.getId()) {
-            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 20);
-
-        } else if (main_BTN_3R.getId() == view.getId()) {
-            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 30);
-
+    private boolean nextHandCheck() {
+        if (main_LPB_leftbar.getProgress() == 0) {
+            return false;
+        }else if(main_LPB_rightbar.getProgress() == 0){
+            return false;
         }
+        return true;
+    }
 
-        if (main_BTN_1L.getId() == view.getId()) {
+    private void player2() {
+        int randNumPlayer = new Random().nextInt(3);
+        if(randNumPlayer == 0){
             main_LPB_rightbar.setProgress(main_LPB_rightbar.getProgress() - 10);
-
-        } else if (main_BTN_2L.getId() == view.getId()) {
+        }else if(randNumPlayer == 1){
             main_LPB_rightbar.setProgress(main_LPB_rightbar.getProgress() - 20);
-
-        } else if (main_BTN_3L.getId() == view.getId()) {
+        }else if(randNumPlayer == 2){
             main_LPB_rightbar.setProgress(main_LPB_rightbar.getProgress() - 30);
         }
+        changePlayerLeft();
+    }
 
-        if ((view.getId() == main_BTN_1L.getId()) || (view.getId() == main_BTN_2L.getId()) || (view.getId() == main_BTN_3L.getId())) {
-            changePlayerLeft();
-        } else {
-            changePlayerRight();
+    private void player1() {
+        int randNumPlayer = new Random().nextInt(3);
+        if(randNumPlayer == 0){
+            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 10);
+        }else if(randNumPlayer == 1){
+            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 20);
+        }else if(randNumPlayer == 2){
+            main_LPB_leftbar.setProgress(main_LPB_leftbar.getProgress() - 30);
         }
-        counter++;
-        checkContinue();
+        changePlayerRight();
+    }
+
+    private void changeColor() {
+
+        if (main_LPB_leftbar.getProgress() <= 30) {
+            main_LPB_leftbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+        if (main_LPB_rightbar.getProgress() <= 30) {
+            main_LPB_rightbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void checkContinue() {
+    private void stopApp() {
 
-        changeColor();
+        main_BTN_1R.setClickable(false);
+        main_BTN_2R.setClickable(false);
+        main_BTN_3R.setClickable(false);
 
-        if (main_LPB_leftbar.getProgress() == 0) {
-            Toast.makeText(this, "Liel sleep", Toast.LENGTH_LONG).show();
-            getDeviceLocation();
-            stopApp();
+        main_BTN_1L.setClickable(false);
+        main_BTN_2L.setClickable(false);
+        main_BTN_3L.setClickable(false);
 
-        }
-
-        if (main_LPB_rightbar.getProgress() == 0) {
-            Toast.makeText(this, "Nathan sleep", Toast.LENGTH_LONG).show();
-            getDeviceLocation();
-            stopApp();
-
-        }
     }
 
     private void getDeviceLocation() {
         Log.d("nathan", "getDeviceLocation: Getting users location");
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         if (getApplicationContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) { // If user gave permission
+                == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                 @Override
-                public void onComplete(@NonNull Task<Location> task) { // Got result
+                public void onComplete(@NonNull Task<Location> task) {
                     if (task.isSuccessful()) {
                         mLastKnownLocation = task.getResult();
-                        if (mLastKnownLocation != null) { // If the result is not null
+                        if (mLastKnownLocation != null) {
                             Log.d("nathan", "onComplete: Result is not null");
                             Double lat = mLastKnownLocation.getLatitude();
                             Double lon = mLastKnownLocation.getLongitude();
                             sendTop10(lat,lon);
-                        } else { // If the location is null, we need to request updated location
+                        } else {
                             Log.d("nathan", "onComplete: Result is null, requesting location update");
                         }
                     }
@@ -170,34 +161,33 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }else {
-            // Request permission from user
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             getDeviceLocation();
         }
     }
 
-
-
-    private void sendTop10(Double lat ,double lon) {
-            Gson gson = new Gson();
-            String json = gson.toJson(new ItemData(R.drawable.ic_fisrt,"Score : "+((counter/2)+1),""+lat,""+lon));
-                mySP.putString("data",json);
-                mySP.apply();
-
-
+    private void sendTop10(Double lat,Double lon) {
+        Gson gson = new Gson();
+        String json = gson.toJson(new ItemData(R.drawable.ic_second,"Score : "+((counter/2)+1),""+lat,""+lon));
+        mySP.putString("random",json);
+        mySP.apply();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void changeColor() {
+    private void checkContinue() {
 
-        if (main_LPB_leftbar.getProgress() <= 30) {
-            main_LPB_leftbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        changeColor();
+
+        if (main_LPB_leftbar.getProgress() == 0) {
+            Toast.makeText(this, "Liel sleep", Toast.LENGTH_LONG).show();
+            stopApp();
+            getDeviceLocation();
         }
 
-        if (main_LPB_rightbar.getProgress() <= 30) {
-            main_LPB_rightbar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        if (main_LPB_rightbar.getProgress() == 0) {
+            Toast.makeText(this, "Nathan sleep", Toast.LENGTH_LONG).show();
+            stopApp();
+            getDeviceLocation();
         }
-
     }
 
     private void changePlayerRight() {
@@ -220,19 +210,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void stopApp() {
-
-        main_BTN_1R.setClickable(false);
-        main_BTN_2R.setClickable(false);
-        main_BTN_3R.setClickable(false);
-
-        main_BTN_1L.setClickable(false);
-        main_BTN_2L.setClickable(false);
-        main_BTN_3L.setClickable(false);
-
-    }
-
-
     private void changePlayerLeft() {
 
         main_BTN_1L.setClickable(false);
@@ -253,21 +230,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void findViews() {
+    private void findViews(){
 
-        main_BTN_1L = findViewById(R.id.main_BTN_1L);
-        main_BTN_2L = findViewById(R.id.main_BTN_2L);
-        main_BTN_3L = findViewById(R.id.main_BTN_3L);
-        main_BTN_1R = findViewById(R.id.main_BTN_1R);
-        main_BTN_2R = findViewById(R.id.main_BTN_2R);
-        main_BTN_3R = findViewById(R.id.main_BTN_3R);
+    main_BTN_1L = findViewById(R.id.main_BTN_1L);
+    main_BTN_2L = findViewById(R.id.main_BTN_2L);
+    main_BTN_3L = findViewById(R.id.main_BTN_3L);
+    main_BTN_1R = findViewById(R.id.main_BTN_1R);
+    main_BTN_2R = findViewById(R.id.main_BTN_2R);
+    main_BTN_3R = findViewById(R.id.main_BTN_3R);
 
-        main_LPB_leftbar = findViewById(R.id.main_LPB_leftbar);
-        main_LPB_rightbar = findViewById(R.id.main_LPB_rightbar);
+    main_LPB_leftbar = findViewById(R.id.main_LPB_leftbar);
+    main_LPB_rightbar = findViewById(R.id.main_LPB_rightbar);
 
-        main_IMG_left = findViewById(R.id.main_IMG_left);
-        main_IMG_right = findViewById(R.id.main_IMG_right);
-        main_IMG_backround = findViewById(R.id.main_IMG_backround);
+    main_IMG_left = findViewById(R.id.main_IMG_left);
+    main_IMG_right = findViewById(R.id.main_IMG_right);
+    main_IMG_backround = findViewById(R.id.main_IMG_backround);
 
         main_LPB_rightbar.setProgress(100);
         main_LPB_leftbar.setProgress(100);
@@ -290,9 +267,9 @@ public class MainActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(main_IMG_backround);
 
-        mySP = getSharedPreferences("MY_SP", MODE_PRIVATE).edit();
 
-    }
+    mySP = getSharedPreferences("MY_SP", MODE_PRIVATE).edit();
+ }
 
 
 }

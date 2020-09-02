@@ -13,4 +13,9 @@
     <color name="btnFontOffColor">#B1B1B1</color>
 
     <color name="lfbEndColor">#FF0000</color>
+
+    <color name="btnStartAndTop">#FB0076</color>
+
+    <color name="rcvBackround">#A5A5A5</color>
+
 </resources>
