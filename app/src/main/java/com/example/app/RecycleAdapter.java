@@ -13,31 +13,34 @@ import java.util.ArrayList;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
     private ArrayList<ItemData> itemData;
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView RecycleAdapter_IMG_pos;
-        public TextView  RecycleAdapter_TXT_score;
-        public TextView  RecycleAdapter_TXT_x;
-        public TextView  RecycleAdapter_TXT_y;
+        public TextView RecycleAdapter_TXT_score;
+        public TextView RecycleAdapter_TXT_x;
+        public TextView RecycleAdapter_TXT_y;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-             RecycleAdapter_IMG_pos = itemView.findViewById(R.id.data_IMG_winner);
-             RecycleAdapter_TXT_score = itemView.findViewById(R.id.data_TXT_score);
-             RecycleAdapter_TXT_x = itemView.findViewById(R.id.data_TXT_x);
-             RecycleAdapter_TXT_y = itemView.findViewById(R.id.data_TXT_y);
+            RecycleAdapter_IMG_pos = itemView.findViewById(R.id.data_IMG_winner);
+            RecycleAdapter_TXT_score = itemView.findViewById(R.id.data_TXT_score);
+            RecycleAdapter_TXT_x = itemView.findViewById(R.id.data_TXT_x);
+            RecycleAdapter_TXT_y = itemView.findViewById(R.id.data_TXT_y);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.winner_data,parent,false);
-         ViewHolder vh = new ViewHolder(v);
-         return vh;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.winner_data, parent, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
     }
-    public RecycleAdapter(ArrayList<ItemData> itemDataList){
+
+    public RecycleAdapter(ArrayList<ItemData> itemDataList) {
         itemData = itemDataList;
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemData currentItem = itemData.get(position);
@@ -51,8 +54,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     public int getItemCount() {
         return itemData.size();
     }
-
-
 
 
 }

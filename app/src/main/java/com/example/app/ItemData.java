@@ -1,10 +1,5 @@
 package com.example.app;
 
-import androidx.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.stream.Stream;
-
 public class ItemData {
     private int imagePosition;
     private String xText;

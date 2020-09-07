@@ -5,21 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.app.Activity_Game">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/game_IMG_backround"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/img_backround_start" />
+    <RelativeLayout
+        android:id="@+id/game_LAY_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_backround_start"
+        android:gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:layout_centerHorizontal="true">
+            android:layout_marginTop="250dp">
 
             <Button
                 android:id="@+id/game_BTN_solo"
@@ -27,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="1 vs 1"
                 android:background="@color/btnStartAndTop"
-                android:textColor="@color/btnTextColor"/>
+                android:textColor="@color/btnTextColor" />
 
             <Button
                 android:id="@+id/game_BTN_auto"
@@ -36,7 +33,7 @@
                 android:layout_marginLeft="120dp"
                 android:text="RAND vs RAND"
                 android:background="@color/btnStartAndTop"
-                android:textColor="@color/btnTextColor"/>
+                android:textColor="@color/btnTextColor" />
 
             <Button
                 android:id="@+id/game_BTN_ran"
@@ -45,7 +42,7 @@
                 android:layout_marginLeft="100dp"
                 android:text="1 vs RANDOM"
                 android:background="@color/btnStartAndTop"
-                android:textColor="@color/btnTextColor"/>
+                android:textColor="@color/btnTextColor" />
 
 
         </LinearLayout>

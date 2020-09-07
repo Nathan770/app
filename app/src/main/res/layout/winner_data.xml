@@ -9,11 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp">
-       <ImageView
-           android:id="@+id/data_IMG_winner"
-           android:layout_width="50dp"
-           android:layout_height="50dp"
-           android:padding="2dp"/>
+
+        <ImageView
+            android:id="@+id/data_IMG_winner"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="2dp" />
 
         <TextView
             android:id="@+id/data_TXT_score"
@@ -34,7 +35,7 @@
             android:text="line 2 "
             android:textStyle="bold"
             android:layout_below="@id/data_TXT_score"
-            android:layout_toRightOf="@id/data_IMG_winner"/>
+            android:layout_toRightOf="@id/data_IMG_winner" />
 
         <TextView
             android:id="@+id/data_TXT_mafride"
@@ -43,7 +44,7 @@
             android:text="| "
             android:textStyle="bold"
             android:layout_below="@id/data_TXT_score"
-            android:layout_toRightOf="@id/data_TXT_x"/>
+            android:layout_toRightOf="@id/data_TXT_x" />
 
         <TextView
             android:id="@+id/data_TXT_y"
@@ -52,7 +53,7 @@
             android:text="line 3 "
             android:textStyle="bold"
             android:layout_below="@id/data_TXT_score"
-            android:layout_toRightOf="@id/data_TXT_mafride"/>
+            android:layout_toRightOf="@id/data_TXT_mafride" />
 
 
     </RelativeLayout>

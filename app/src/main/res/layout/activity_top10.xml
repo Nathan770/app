@@ -14,28 +14,26 @@
             android:id="@+id/top10_TXT_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top 10"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:textSize="40dp"/>
+            android:text="Top 10"
+            android:textSize="40dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/top10_RCV_winnerData"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:padding="4dp"
-            android:scrollbars="vertical"
+            android:layout_below="@id/top10_TXT_header"
             android:background="@color/rcvBackround"
-            android:layout_below="@id/top10_TXT_header"/>
+            android:padding="4dp"
+            android:scrollbars="vertical" />
 
-        <com.google.android.gms.maps.MapView
+        <com.google.android.gms.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/top10_MPV_map"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/top10_RCV_winnerData"/>
-
+            android:layout_below="@id/top10_RCV_winnerData" />
 
 
     </RelativeLayout>
